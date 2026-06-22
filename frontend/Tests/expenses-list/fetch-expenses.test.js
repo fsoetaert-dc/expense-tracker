@@ -1,5 +1,5 @@
 // apiClient.test.js
-import { getExpensesData } from "../../expenses-list/fetch-expenses";
+import { getExpensesData } from "../../src/expenses-list/fetch-expenses";
 import { vi, it, expect } from "vitest";
 
 global.fetch = vi.fn();
