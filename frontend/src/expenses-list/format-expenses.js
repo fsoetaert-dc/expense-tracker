@@ -9,10 +9,10 @@ function formatExpenses(expenses) {
 }
 export const __only_for_test = { formatExpenses };
 
-export function getExpenses() {
+export async function getExpenses() {
     try {
-        const res = getExpensesData();
-        const resform = formatExpenses(res);
+        const res = await getExpensesData();
+        const expenses = formatExpenses(res);
         return { success: true, expenses };
     }
     catch (error) { return { success: false, error }; }

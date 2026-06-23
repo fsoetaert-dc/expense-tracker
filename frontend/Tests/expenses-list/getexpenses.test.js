@@ -8,21 +8,35 @@ import { getExpenses, __only_for_test as internal } from '../../src/expenses-lis
 import { getExpensesData } from '../../src/expenses-list/fetch-expenses';
 
 
-    it('is correct geformateerd', async () => {
-        const expenses = [    {
+it('is correct geformateerd', async () => {
+    const expenses = [{
         "id": "1a2b3c",
         "description": "Lunch bij Broodje Mario",
         "amount": 8.50,
         "date": "2025-06-12",
         "category": "Eten"
     }]
-        getExpensesData.mockResolvedValueOnce(
-        []);
-        const res = await getExpenses();
-        expect(res).toEqual({ success: true, expenses });
+    getExpensesData.mockResolvedValueOnce(
+        [{
+            "id": "1a2b3c",
+            "description": "Lunch bij Broodje Mario",
+            "amount": 8.50,
+            "date": "2025-06-12",
+            "category": "Eten"
+        }]);
+    const res = await getExpenses();
+    expect(res).toEqual({
+        success: true, expenses: [{
+            "id": "1a2b3c",
+            "description": "Lunch bij Broodje Mario",
+            "displayDate": "12/6/2025",
+            "amount": 8.50,
+            "date": "2025-06-12",
+            "category": "Eten"
+        }]
     });
 
     // it('bij fout, wordt er een error doorgegeven', () => {
     //     expect(getExpenses()).toEqual({ success: false, error });
     // });
-
+});
