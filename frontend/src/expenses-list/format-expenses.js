@@ -1,6 +1,7 @@
 import { getExpensesData } from "../../src/expenses-list/fetch-expenses"
 
 function formatExpenses(expenses) {
+    console.log(expenses);
     return expenses.map((expense) => ({
         ...expense,
         displayDate: new Date(expense.date).toLocaleDateString(),
