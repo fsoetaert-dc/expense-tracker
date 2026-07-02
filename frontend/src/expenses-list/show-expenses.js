@@ -1,3 +1,5 @@
+import { getExpenses } from "../../src/expenses-list/format-expenses"
+
 function showLoading(element) {
     element.textContent = "Loading...";
 }
@@ -16,16 +18,36 @@ function renderExpenses(element, expenses) {
         element.textContent = "No expenses";
         return;
     }
-    let html = "<ul>";
+    element.firstChild?.remove();
+    let ul = document.createElement("ul");
     for (const expense of expenses) {
-        html += `<li>"id": "${expense.id}"</li>`;
-        html += `<li>"description": "${expense.description}"</li>`;
-        html += `<li>"amount": ${expense.amount.toFixed(2)}</li>`;
-        html += `<li>"date": "${expense.date}"</li>`;
-        html += `<li>"category": "${expense.category}"</li>`;
+        const li1 = document.createElement('li');
+        const li2 = document.createElement('li');
+        const li3 = document.createElement('li');
+        const li4 = document.createElement('li');
+        const li5 = document.createElement('li');
+        li1.textContent = "id: " + expense.id;
+        ul.appendChild(li1);
+        li2.textContent = "description: " + expense.description;
+        ul.appendChild(li2);
+        li3.textContent = "amount: " + expense.amount;
+        ul.appendChild(li3);
+        li4.textContent = "date: " + expense.date;
+        ul.appendChild(li4);
+        li5.textContent = "category: " + expense.category;
+        ul.appendChild(li5);
     }
-    html += "</ul>";
-    element.innerHTML = html;
+    element.appendChild(ul);
+    return element;
+}
+
+export async function showExpenses(element) {
+    showLoading(element);
+    let res = await getExpenses();
+    if (res.success == true) {
+        return renderExpenses(element, res.expenses)
+    }
+    else { showError(element, res.error) }
 }
 
 export const __only_for_test = { showLoading, showError, showEmptyState, renderExpenses };
