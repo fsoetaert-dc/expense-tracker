@@ -1,4 +1,4 @@
-import { getExpensesData } from "../../src/expenses-list/fetch-expenses"
+import { getExpensesData } from "../../src/expenses-list/fetch-expenses.js"
 
 function formatExpenses(expenses) {
     console.log(expenses);

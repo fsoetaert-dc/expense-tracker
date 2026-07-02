@@ -1,4 +1,4 @@
-import { getExpenses } from "../../src/expenses-list/format-expenses"
+import { getExpenses } from "../../src/expenses-list/format-expenses.js"
 
 function showLoading(element) {
     element.textContent = "Loading...";
